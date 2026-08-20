@@ -1,0 +1,7 @@
+{
+  "name": "hotwheels-checker",
+  "version": "1.0.0",
+  "scripts": {
+    "start": "node karzanddolls.js"
+  }
+}
