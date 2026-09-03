@@ -14,7 +14,6 @@ const KEYWORDS = [
   "MINI GT 1224",
   "MINI GT 1215",
   "MINI GT 853",
-  "MINI GT 1123",
 ];
 
 const INTERVAL_MS = 15000;
