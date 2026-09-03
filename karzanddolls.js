@@ -3,8 +3,8 @@
 
 const PAGES = [
   {
-    url: "https://www.karzanddolls.com/details/mini+gt+/mini-gt/MTY1?page=1",
-    name: "Mini GT Page 1"
+    url: "https://www.karzanddolls.com/mini-gt/mini-gt",
+    name: "Mini GT Page"
   }
 ];
 
@@ -13,15 +13,17 @@ const KEYWORDS = [
   "MINI GT 1218",
   "MINI GT 1224",
   "MINI GT 1215",
+  "MINI GT 853",
+  "MINI GT 1123",
 ];
 
-const INTERVAL_MS = 30000;
+const INTERVAL_MS = 15000;
 const NTFY_TOPIC = "vineet-hotwheels-alert";
 
 async function sendPush(keyword, url) {
   await fetch(`https://ntfy.sh/${NTFY_TOPIC}`, {
     method: "POST",
-    body: `New release spotted! "${keyword}" found on ${url}`,
+    body: `New release spotted! "${keyword}" found on Karz and Dolls! ${url}`,
     headers: { "Title": "New Mini GT Release!", "Priority": "urgent", "Tags": "car,rotating_light" }
   });
 }
@@ -32,14 +34,14 @@ async function checkPage(page) {
     const html = await res.text();
 
     for (const keyword of KEYWORDS) {
-      if (html.toLowerCase().includes(keyword.toLowerCase())) {
+      if (html.includes(keyword)) {
         console.log(`FOUND: "${keyword}" on ${page.name}! Sending notification...`);
         await sendPush(keyword, page.url);
-        return; // Stop checking once found
+        return;
       }
     }
 
-    console.log(new Date().toLocaleTimeString(), `- Not found yet on ${page.name}`);
+    console.log(new Date().toLocaleTimeString(), `- Keywords not found yet on ${page.name}`);
 
   } catch (e) {
     console.error(`Error checking ${page.name}:`, e.message);
