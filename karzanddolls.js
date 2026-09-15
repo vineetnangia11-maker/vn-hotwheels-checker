@@ -13,7 +13,7 @@ const KEYWORDS = [
   "MINI GT 1218",
   "MINI GT 1224",
   "MINI GT 1215",
-  "MINI GT 1194",
+  "MINI GT 853",
   
 ];
 
